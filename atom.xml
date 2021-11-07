@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>清风的博客</title>
+  
+  <subtitle>记录生活和自己</subtitle>
+  <link href="http://qingfengruoshi.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://qingfengruoshi.github.io/"/>
+  <updated>2021-09-15T12:39:09.209Z</updated>
+  <id>http://qingfengruoshi.github.io/</id>
+  
+  <author>
+    <name>清竹</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL配置方法和环境搭建</title>
+    <link href="http://qingfengruoshi.github.io/2021/09/02/MySQL%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>http://qingfengruoshi.github.io/2021/09/02/MySQL%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E5%92%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</id>
+    <published>2021-09-02T09:23:19.037Z</published>
+    <updated>2021-09-15T12:39:09.209Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="MySQL配置方法"><a href="#MySQL配置方法" class="headerlink" title="MySQL配置方法"></a>MySQL配置方法</h3><hr><p>推荐使用zip的版本<br>下载进入官网下载就行官网下载链接<a href="https://dev.mysql.com/downloads/mysql/">https://dev.mysql.com/downloads/mysql/</a><br>在开头选择Windows还是其他的系统 下载第一个就行了不用下载带有debug的版本<br>下载过会解压到你所要安装的位置就行(解压的路径中不能有中文)<br>在MySQL根目录创建一个叫做my.ini的文件,然后在里面写上下面的代码,需要有一定的修改文件路径需要修改一下其他的也没有什么了<br>在解压之后如果有data就不用管了,但是如果没有data就需要自己创建一个data文件夹<br>到此处其实就已经安装完了</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment"># 设置3306端口</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录   ----------是你的文件路径-------------</span></span><br><span class="line"><span class="attr">basedir</span>=E:\mysql\mysql</span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录  ---------是你的文件路径data文件夹自行创建</span></span><br><span class="line"><span class="attr">datadir</span>=E:\mysql\mysql\data</span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"><span class="comment"># 允许连接失败的次数。</span></span><br><span class="line"><span class="attr">max_connect_errors</span>=<span class="number">10</span></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为utf8mb4</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8mb4</span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"><span class="comment"># 默认使用“mysql_native_password”插件认证</span></span><br><span class="line"><span class="comment">#mysql_native_password</span></span><br><span class="line"><span class="attr">default_authentication_plugin</span>=mysql_native_password</span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8mb4</span><br><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="comment"># 设置mysql客户端连接服务端时默认使用的端口</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8mb4</span><br></pre></td></tr></table></figure><h3 id="MySQL的初始化"><a href="#MySQL的初始化" class="headerlink" title="MySQL的初始化"></a>MySQL的初始化</h3><p>需要用管理员身份打开cmd,否则会出错,然后用指令进入之前解压的MySQL文件的bin目录中(cd+文件名是进入目标文件夹 cd ..是倒退到上一个文件夹)<br>进入bin目录之后输入mysql –initialize –console进行初始化<br>之后会出现几行很长的代码,复制root@localhost后面的密码(:之后会有一个空格就不用复制了)这个是你的初始密码别删除了,先保存起来过会有用<br>——————————————————-平平无奇的分割线————————————————-<br>然后就需要安装mysql的服务,在之前打开的cmd上输入mysql –install mysql进行安装MySQL服务,安装成功之后会出现service successfully installed的提示<br>启动mysql的服务net start mysql之后会提示启动成功<br>关闭mysql的服务net stop mysql<br>然后连接到MySQL<br>在cmd中输入mysql -u root -p 输入完成之后会提示然你输入密码,输入之前复制保存的密码就行<br>成功的话文件路径会变成mysql而不是bin目录的路径<br>接下来输入<code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;新的密码&#39; </code> 然后回车就行了</p><h3 id="MySQL配置环境变量"><a href="#MySQL配置环境变量" class="headerlink" title="MySQL配置环境变量"></a>MySQL配置环境变量</h3><p>找到之前解压的MySQL文件位置,然后找到bin目录,复制路径(路径不能有中文)<br>然后右键点击此电脑  点击属性  点击高级系统设置 点击环境变量会出现两个不一样的,一个是用户变量一个是系统变量,配置系统变量就行<br>在系统变量里面找到Path双击进去  点击新建把刚刚复制的bin目录的路径粘贴上去就行然后点击确定退出即可</p><hr>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;MySQL配置方法&quot;&gt;&lt;a href=&quot;#MySQL配置方法&quot; class=&quot;headerlink&quot; title=&quot;MySQL配置方法&quot;&gt;&lt;/a&gt;MySQL配置方法&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;推荐使用zip的版本&lt;br&gt;下载进入官网下载就行官网下载链接&lt;a href</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vscode的配置方法</title>
+    <link href="http://qingfengruoshi.github.io/2021/07/12/vscode%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/"/>
+    <id>http://qingfengruoshi.github.io/2021/07/12/vscode%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</id>
+    <published>2021-07-12T14:38:57.867Z</published>
+    <updated>2021-07-12T14:44:40.171Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="VScode配置c语言"><a href="#VScode配置c语言" class="headerlink" title="VScode配置c语言"></a>VScode配置c语言</h2><hr><p>推荐插件<br>Bracket Pair Colorizer   括号指明(建议安装)<br>c/c++              必须安装的插件<br>Chinese            中文插件<br>code runner     运行run插件<br>error  lens        报错提示(建议安装)<br>visual  studio  Intellicode   提示代码(建议安装)</p><p>配置环境,需要mingw以及配置c语言的环境变量<br>Code  runner 扩展设置(必须安装的插件)<br>Code-runner:Run In Terminal(打开)<br>Code-runner:Saver File Befor Run(打开)</p><dl><dt>C/C++扩展设置<br>C_CPP&gt;Default:Compiler Path<br>点击settings.json在最后一行的双引号中填上mingw的bin目录的路径,并且在bin目录后面加上\g++.exe(注意:反斜杠会报错,需要把路径的单个反斜杠写成双反斜杠)<br>C_CPP&gt;Dafault Cpp standard  :  设置成c++14<br>C_CPP&gt;Dafault C standard :  设置成c11<br>C_CPP&gt;Default:  Include  Path</dt><dd>点击settings.json在最后一行中的  [ ]  输入mingw中的lib路径,   把单个反斜杠改写成双斜杠 ,并且在路径的两边加上双引号<br>C_CPP&gt;Default: Intelli Sense  Mode 设置成gcc-x64</dd></dl><hr>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;VScode配置c语言&quot;&gt;&lt;a href=&quot;#VScode配置c语言&quot; class=&quot;headerlink&quot; title=&quot;VScode配置c语言&quot;&gt;&lt;/a&gt;VScode配置c语言&lt;/h2&gt;&lt;hr&gt;
+&lt;p&gt;推荐插件&lt;br&gt;Bracket Pair Colorize</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>不限速下载</title>
+    <link href="http://qingfengruoshi.github.io/2021/06/16/%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD/"/>
+    <id>http://qingfengruoshi.github.io/2021/06/16/%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD/</id>
+    <published>2021-06-16T12:10:29.459Z</published>
+    <updated>2021-06-16T12:45:32.882Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="不限速下载方案"><a href="#不限速下载方案" class="headerlink" title="不限速下载方案"></a>不限速下载方案</h2><hr><p>所需的软件是IDM   以及油猴提供的脚本<br>在百度中 搜索IDM即可出现 IDM  点击IDM官方网站进入下载IDM 下载好安装好之后<br>在安装完IDM之后进入浏览器会显示添加IDM扩展 点击添加<br>进入谷歌浏览器 如果没有谷歌浏览器就用微软自带的浏览器  现在谷歌浏览器和微软的浏览器都挺好用的<br>(个人推荐用微软的吧,因为如果是谷歌的话比较麻烦)<br>进入微软浏览器 然后右上角三个点 找到一个叫扩展的选项点进入之后下载油猴(Tampermonkey)然后添加扩展<br>添加完扩展之后 扩展详情里面能打开的都打开<br>返回浏览器主页面会发现有一个油猴的图标在上面<br>点击油猴图标 点击获取新脚本 搜索&lt;百度直链提取工具&gt;进入脚本主页一定要看作者写的说明!一定要看!<br>打开下载好的IDM 在上面找到选项 点击选项点击下载 根据脚本作者说明添加相应的UA(如果不添加脚本作者说明的UA就无法下载)<br>点击连接 最大连接数设置为4 一切设置完成 打开浏览器进入百度网盘网页版 选择你要下载的东西点击下载会出现一个链接 复制此链接<br>在刚刚打开的IDM上新建任务 确认直链是你复制的 点击确定 出现下载点击开始下载即可</p><hr>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;不限速下载方案&quot;&gt;&lt;a href=&quot;#不限速下载方案&quot; class=&quot;headerlink&quot; title=&quot;不限速下载方案&quot;&gt;&lt;/a&gt;不限速下载方案&lt;/h2&gt;&lt;hr&gt;
+&lt;p&gt;所需的软件是IDM   以及油猴提供的脚本&lt;br&gt;在百度中 搜索IDM即可出现 IDM  </summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我的文章</title>
+    <link href="http://qingfengruoshi.github.io/2021/04/02/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/"/>
+    <id>http://qingfengruoshi.github.io/2021/04/02/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/</id>
+    <published>2021-04-02T08:33:20.316Z</published>
+    <updated>2021-04-16T03:16:00.228Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="文案"><a href="#文案" class="headerlink" title="文案"></a>文案</h2><hr><p>那一刻,我心中有一场海啸.可我静静的走着,没有任何人知道<br>重新读一本书会有新的感悟,但不会有新的结果<br>晚风轻轻吹过你的脸庞,我只能远远的望着你,不求你能望我一眼只求我们今生爱过<br>未来的所有日子，每当我想起你的时候，我的心里会是一个盛大而永恒的春天，我们不是春季限定，你就是我的春天</p><hr>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;文案&quot;&gt;&lt;a href=&quot;#文案&quot; class=&quot;headerlink&quot; title=&quot;文案&quot;&gt;&lt;/a&gt;文案&lt;/h2&gt;&lt;hr&gt;
+&lt;p&gt;那一刻,我心中有一场海啸.可我静静的走着,没有任何人知道&lt;br&gt;重新读一本书会有新的感悟,但不会有新的结果&lt;br&gt;晚风轻轻吹过你的</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://qingfengruoshi.github.io/2021/04/02/hello-world/"/>
+    <id>http://qingfengruoshi.github.io/2021/04/02/hello-world/</id>
+    <published>2021-04-02T08:32:16.706Z</published>
+    <updated>2021-04-02T08:32:16.707Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
